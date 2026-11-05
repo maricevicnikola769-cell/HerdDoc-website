@@ -143,7 +143,7 @@ footer a{color:var(--tekst2)}
   .qr{flex-direction:column;align-items:flex-start}
 }
 /* cene */
-.cene{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.cene{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
 .paket{background:var(--povrs);border:1px solid var(--linija);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px}
 .paket.istaknut{border:2px solid var(--zelena);box-shadow:var(--senka)}
 .paket h3{margin:0;font-size:20px}
@@ -153,7 +153,8 @@ footer a{color:var(--tekst2)}
 .paket .dugme{justify-content:center;margin-top:auto}
 .paket .dugme[aria-disabled="true"]{background:var(--svetla-zelena);color:var(--zelena);pointer-events:none}
 .cene-napomena{margin-top:18px;color:var(--tekst2);font-size:15px;text-align:center}
-@media (max-width:900px){.cene{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:1100px){.cene{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:760px){.cene{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:560px){.cene{grid-template-columns:1fr}}
 </style>
 </head>
@@ -324,8 +325,8 @@ footer a{color:var(--tekst2)}
   <div class="sirina">
     <div class="naslov">
       <h2 lang="sr">Cene</h2><h2 lang="en">Pricing</h2>
-      <p lang="sr">Prvih 30 dana sve radi bez ograničenja. Posle toga je besplatno do 20 grla, a za veća stada izaberi paket. Plaća se jednom godišnje.</p>
-      <p lang="en">For the first 30 days everything works without limits. After that it is free for up to 20 animals; for larger herds choose a package. Billed once a year.</p>
+      <p lang="sr">Prvih 30 dana sve radi bez ograničenja. Posle toga je besplatno do 20 grla u jednom stadu, a za veća stada i udruženja izaberi paket. Plaća se jednom godišnje.</p>
+      <p lang="en">For the first 30 days everything works without limits. After that it is free for up to 20 animals in one herd; for larger herds and associations choose a package. Billed once a year.</p>
     </div>
     <div class="cene">
       <div class="paket">
@@ -355,6 +356,13 @@ footer a{color:var(--tekst2)}
         <ul lang="sr"><li>bez ograničenja broja grla</li><li>sve mogućnosti programa</li><li>aplikacija za telefon</li></ul>
         <ul lang="en"><li>unlimited animals</li><li>all program features</li><li>phone app</li></ul>
         <a class="dugme glavno kupi" data-paket="farma" href="#"><span lang="sr">Kupi</span><span lang="en">Buy</span></a>
+      </div>
+      <div class="paket">
+        <h3 lang="sr">Udruženje</h3><h3 lang="en">Association</h3>
+        <div class="cena">399 € <small lang="sr">/ godišnje</small><small lang="en">/ year</small></div>
+        <ul lang="sr"><li>bez ograničenja broja grla</li><li>do 5 računara</li><li>posebna tablica za svakog člana</li></ul>
+        <ul lang="en"><li>unlimited animals</li><li>up to 5 computers</li><li>a separate table for every member</li></ul>
+        <a class="dugme glavno kupi" data-paket="udruzenje" href="#"><span lang="sr">Kupi</span><span lang="en">Buy</span></a>
       </div>
     </div>
     <p class="cene-napomena" id="cene-napomena">
@@ -420,7 +428,7 @@ footer a{color:var(--tekst2)}
 
 <script>
 /* Linkovi za kupovinu (Lemon Squeezy). Dok su prazni, dugme piše „Uskoro“. */
-const KUPOVINA = { osnovni: "", pro: "", farma: "" };
+const KUPOVINA = { osnovni: "", pro: "", farma: "", udruzenje: "" };
 document.querySelectorAll(".kupi").forEach(a => {
   const url = KUPOVINA[a.dataset.paket];
   if (url) { a.href = url; a.rel = "noopener"; }
