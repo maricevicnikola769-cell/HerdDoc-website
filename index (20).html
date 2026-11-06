@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="sr" data-lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HerdDoc – rodoslov stada, srodstvo i plan parenja</title>
+<meta name="description" content="HerdDoc: program za rodoslov stada, inbriding i plan parenja – na računaru i telefonu, i bez interneta. Herd pedigree, inbreeding and mating plans for breeders.">
+<meta name="theme-color" content="#2E5E45">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="HerdDoc – herd pedigree, kinship and mating plans">
+<meta property="og:description" content="Pedigree, inbreeding and the best mating partners for every animal – on your computer and in the barn on your phone.">
+<meta property="og:image" content="https://herddoc.com/slike/og.png">
+<meta property="og:url" content="https://herddoc.com/">
+<style>
+:root{
+  --zelena:#2E5E45; --zelena-tamna:#244B37; --zuta:#F4C400; --pozadina:#F3F5F1; --povrs:#FFFFFF;
+  --tekst:#18221C; --tekst2:#56645A; --linija:#DDE3DA; --svetla-zelena:#E7EFE9;
+  --senka:0 10px 30px rgba(24,34,28,.10), 0 2px 6px rgba(24,34,28,.06);
+  --font:"Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--pozadina);color:var(--tekst);font-family:var(--font);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--zelena)}
+.sirina{max-width:1160px;margin:0 auto;padding:0 20px}
+/* jezik */
+html[data-lang="sr"] [lang="en"]:not(html), html[data-lang="en"] [lang="sr"]:not(html){display:none !important}
+
+/* zaglavlje */
+.vrh{position:sticky;top:0;z-index:20;background:rgba(243,245,241,.92);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
+.vrh.senka{border-bottom-color:var(--linija)}
+.vrh .sirina{display:flex;align-items:center;gap:18px;height:68px}
+.marka{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--tekst);font-weight:800;font-size:21px;letter-spacing:-.01em}
+.marka img{width:36px;height:36px}
+.meni{display:flex;gap:4px;margin-left:auto}
+.meni a{color:var(--tekst2);text-decoration:none;font-size:15px;font-weight:600;padding:8px 12px;border-radius:8px}
+.meni a:hover{color:var(--tekst);background:var(--svetla-zelena)}
+.jezik{display:flex;border:1px solid var(--linija);border-radius:999px;overflow:hidden;background:var(--povrs)}
+.jezik button{border:0;background:none;font:600 13px var(--font);padding:7px 12px;cursor:pointer;color:var(--tekst2)}
+.jezik button[aria-pressed="true"]{background:var(--zelena);color:#fff}
+.dugme{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:16px;padding:14px 22px;border-radius:12px;border:1px solid transparent;transition:transform .15s, background .15s}
+.dugme:hover{transform:translateY(-1px)}
+.dugme.glavno{background:var(--zelena);color:#fff}
+.dugme.glavno:hover{background:var(--zelena-tamna)}
+.dugme.drugo{background:var(--povrs);color:var(--tekst);border-color:var(--linija)}
+.dugme small{display:block;font-weight:500;font-size:12.5px;opacity:.8;line-height:1.2}
+.dugme .ik{font-size:20px;line-height:1}
+
+/* uvod */
+.uvod{padding:64px 0 40px}
+.uvod .sirina{display:grid;grid-template-columns:1.02fr 1fr;gap:48px;align-items:center}
+.oznaka{display:inline-block;background:var(--svetla-zelena);color:var(--zelena);font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+h1{font-size:clamp(34px,4.6vw,54px);line-height:1.08;letter-spacing:-.025em;margin:18px 0 18px;font-weight:800}
+h1 em{font-style:normal;background:linear-gradient(transparent 62%, rgba(244,196,0,.55) 62%)}
+.uvod p.pod{font-size:19px;color:var(--tekst2);margin:0 0 28px;max-width:34em}
+.akcije{display:flex;flex-wrap:wrap;gap:12px}
+.sitno{font-size:14px;color:var(--tekst2);margin-top:14px}
+.prikaz{position:relative}
+.prikaz .pc{border-radius:12px;box-shadow:var(--senka);border:1px solid var(--linija)}
+.prikaz .tel{position:absolute;right:-14px;bottom:-34px;width:28%;border-radius:22px;border:6px solid #18221C;box-shadow:var(--senka)}
+
+/* trake sa vrstama */
+.vrste{padding:18px 0 8px}
+.vrste .sirina{display:flex;flex-wrap:wrap;gap:10px 26px;justify-content:center;color:var(--tekst2);font-weight:600;font-size:15px}
+.vrste span b{color:var(--tekst)}
+
+/* sekcije */
+section{padding:72px 0}
+.naslov{max-width:720px;margin:0 auto 40px;text-align:center}
+h2{font-size:clamp(28px,3.2vw,38px);line-height:1.15;letter-spacing:-.02em;margin:0 0 12px;font-weight:800}
+.naslov p{color:var(--tekst2);margin:0;font-size:18px}
+.mreza{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.kartica{background:var(--povrs);border:1px solid var(--linija);border-radius:16px;padding:26px}
+.kartica .znak{width:44px;height:44px;border-radius:12px;background:var(--svetla-zelena);display:grid;place-items:center;font-size:22px;margin-bottom:14px}
+.kartica h3{margin:0 0 8px;font-size:19px;letter-spacing:-.01em}
+.kartica p{margin:0;color:var(--tekst2);font-size:15.5px}
+
+/* galerija */
+.galerija{background:var(--povrs);border-top:1px solid var(--linija);border-bottom:1px solid var(--linija)}
+.kartice{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:22px}
+.kartice button{font:600 14.5px var(--font);border:1px solid var(--linija);background:var(--pozadina);color:var(--tekst2);padding:9px 16px;border-radius:999px;cursor:pointer}
+.kartice button[aria-selected="true"]{background:var(--zelena);border-color:var(--zelena);color:#fff}
+.slika-okvir{max-width:1000px;margin:0 auto}
+.slika-okvir img{border-radius:12px;border:1px solid var(--linija);box-shadow:var(--senka)}
+.opis-slike{text-align:center;color:var(--tekst2);font-size:15.5px;margin:18px auto 0;max-width:700px}
+.telefoni{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:900px;margin:56px auto 0}
+.telefoni figure{margin:0}
+.telefoni img{border-radius:20px;border:5px solid #18221C;box-shadow:var(--senka)}
+.telefoni figcaption{text-align:center;font-size:14px;color:var(--tekst2);margin-top:10px}
+
+/* koraci */
+.koraci{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:k}
+.korak{position:relative;background:var(--povrs);border:1px solid var(--linija);border-radius:16px;padding:26px 26px 26px 26px}
+.korak::before{counter-increment:k;content:counter(k);display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--zuta);color:var(--tekst);font-weight:800;margin-bottom:12px}
+.korak h3{margin:0 0 6px;font-size:18.5px}
+.korak p{margin:0;color:var(--tekst2);font-size:15.5px}
+
+/* bezbednost */
+.sigurno{background:var(--zelena);color:#fff;border-radius:22px;padding:44px;display:grid;grid-template-columns:1.1fr 1fr;gap:36px;align-items:center}
+.sigurno h2{color:#fff}
+.sigurno p{color:rgba(255,255,255,.85);margin:0 0 10px}
+.sigurno ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.sigurno li{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:14px 16px;font-size:15.5px}
+.sigurno li b{color:var(--zuta)}
+
+/* preuzimanje */
+.preuzmi{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.preuzmi .kartica{padding:32px}
+.preuzmi h3{font-size:22px;margin-bottom:6px}
+.preuzmi .dugme{margin-top:18px}
+.qr{display:flex;gap:18px;align-items:center;margin-top:18px}
+.qr img{width:112px;height:112px;background:#fff;padding:6px;border:1px solid var(--linija);border-radius:10px}
+.qr p{font-size:14.5px}
+.zahtevi{font-size:14px;color:var(--tekst2);margin-top:14px}
+
+/* kontakt */
+.kontakt{text-align:center}
+.kontakt .mejl{font-size:clamp(20px,2.4vw,26px);font-weight:700;text-decoration:none;color:var(--zelena);border-bottom:2px solid var(--zuta)}
+
+footer{border-top:1px solid var(--linija);padding:28px 0;color:var(--tekst2);font-size:14px}
+footer .sirina{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between}
+footer a{color:var(--tekst2)}
+
+@media (max-width: 900px){
+  .uvod .sirina,.sigurno,.preuzmi{grid-template-columns:1fr}
+  .mreza,.koraci{grid-template-columns:1fr 1fr}
+  .telefoni{grid-template-columns:repeat(2,1fr)}
+  .meni{display:none}
+  .jezik{margin-left:auto}
+  .prikaz{margin:0 0 30px}
+}
+@media (max-width: 600px){
+  body{font-size:16px}
+  .mreza,.koraci{grid-template-columns:1fr}
+  section{padding:52px 0}
+  .uvod{padding:36px 0 24px}
+  .sigurno{padding:28px 22px}
+  .prikaz .tel{right:-6px;bottom:-24px;width:30%;border-width:4px;border-radius:14px}
+  .dugme{width:100%;justify-content:center}
+  .qr{flex-direction:column;align-items:flex-start}
+}
+/* cene */
+.cene{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.paket{background:var(--povrs);border:1px solid var(--linija);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px}
+.paket.istaknut{border:2px solid var(--zelena);box-shadow:var(--senka)}
+.paket h3{margin:0;font-size:20px}
+.paket .cena{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.paket .cena small{font-size:14px;font-weight:600;color:var(--tekst2)}
+.paket ul{margin:4px 0 8px;padding-left:18px;color:var(--tekst2);font-size:15px}
+.paket .dugme{justify-content:center;margin-top:auto}
+.paket .dugme[aria-disabled="true"]{background:var(--svetla-zelena);color:var(--zelena);pointer-events:none}
+.cene-napomena{margin-top:18px;color:var(--tekst2);font-size:15px;text-align:center}
+@media (max-width:1100px){.cene{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:760px){.cene{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.cene{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="vrh" id="vrh">
+  <div class="sirina">
+    <a class="marka" href="#"><img src="favicon.svg" alt="">HerdDoc</a>
+    <nav class="meni" aria-label="Meni">
+      <a href="#mogucnosti"><span lang="sr">Mogućnosti</span><span lang="en">Features</span></a>
+      <a href="#izgled"><span lang="sr">Izgled</span><span lang="en">Screenshots</span></a>
+      <a href="#kako"><span lang="sr">Kako radi</span><span lang="en">How it works</span></a>
+      <a href="#cene"><span lang="sr">Cene</span><span lang="en">Pricing</span></a>
+      <a href="#preuzmi"><span lang="sr">Preuzmi</span><span lang="en">Download</span></a>
+      <a href="#kontakt"><span lang="sr">Kontakt</span><span lang="en">Contact</span></a>
+    </nav>
+    <div class="jezik" role="group" aria-label="Jezik / Language">
+      <button type="button" data-jezik="sr" aria-pressed="true">SR</button>
+      <button type="button" data-jezik="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="uvod">
+  <div class="sirina">
+    <div>
+      <span class="oznaka"><span lang="sr">Za odgajivače stoke</span><span lang="en">For livestock breeders</span></span>
+      <h1 lang="sr">Rodoslov stada i <em>pametno parenje</em> – na računaru i u štali</h1>
+      <h1 lang="en">Herd pedigree and <em>smart mating</em> – on your computer and in the barn</h1>
+      <p class="pod" lang="sr">HerdDoc računa srodstvo i inbriding za svako grlo, predlaže najbolje partnere za parenje i podseća te na porođaje, ter i karencu. Telefon radi u štali i bez interneta.</p>
+      <p class="pod" lang="en">HerdDoc calculates kinship and inbreeding for every animal, suggests the best mating partners and reminds you of births, heat and withdrawal periods. The phone app works in the barn, even offline.</p>
+      <div class="akcije">
+        <a class="dugme glavno" href="#preuzmi"><span class="ik">⬇</span><span><span lang="sr">Preuzmi za Windows</span><span lang="en">Download for Windows</span></span></a>
+        <a class="dugme drugo" href="#izgled"><span lang="sr">Pogledaj program</span><span lang="en">See the program</span></a>
+      </div>
+      <p class="sitno"><span lang="sr">Srpski i engleski · goveda, ovce, koze, svinje, konji</span><span lang="en">English and Serbian · cattle, sheep, goats, pigs, horses</span></p>
+    </div>
+    <div class="prikaz">
+      <img class="pc" lang="sr" src="slike/pc-sr-stablo.webp" width="1240" height="800" alt="HerdDoc – rodoslovno stablo grla sa ponovljenim pretkom">
+      <img class="pc" lang="en" src="slike/pc-en-stablo.webp" width="1240" height="800" alt="HerdDoc – pedigree tree with a repeated ancestor">
+      <img class="tel" lang="sr" src="slike/tel-sr-danas.webp" width="585" height="1266" alt="HerdDoc na telefonu – današnje obaveze">
+      <img class="tel" lang="en" src="slike/tel-en-danas.webp" width="585" height="1266" alt="HerdDoc on the phone – today's tasks">
+    </div>
+  </div>
+</section>
+
+<div class="vrste">
+  <div class="sirina">
+    <span lang="sr"><b>Inbriding</b> po Rajtu (Wright)</span><span lang="en"><b>Inbreeding</b> by Wright's method</span>
+    <span lang="sr"><b>Plan parenja</b> za celo stado</span><span lang="en"><b>Mating plan</b> for the whole herd</span>
+    <span lang="sr"><b>Radi bez interneta</b></span><span lang="en"><b>Works offline</b></span>
+    <span lang="sr"><b>Šifrovano</b> AES-256</span><span lang="en"><b>Encrypted</b> AES-256</span>
+  </div>
+</div>
+
+<section id="mogucnosti">
+  <div class="sirina">
+    <div class="naslov">
+      <h2 lang="sr">Sve što odgajivaču treba, na jednom mestu</h2>
+      <h2 lang="en">Everything a breeder needs, in one place</h2>
+      <p lang="sr">Od porekla svakog grla do odluke koga s kim pariti.</p>
+      <p lang="en">From every animal's ancestry to deciding who to mate with whom.</p>
+    </div>
+    <div class="mreza">
+      <article class="kartica"><div class="znak">🌳</div>
+        <h3 lang="sr">Rodoslov i inbriding</h3><h3 lang="en">Pedigree and inbreeding</h3>
+        <p lang="sr">Rodoslovno stablo, koeficijent inbridinga, udeo gena svakog pretka i upozorenje kad se predak ponavlja u rodoslovu.</p>
+        <p lang="en">Pedigree tree, inbreeding coefficient, each ancestor's share of genes and a warning when an ancestor repeats in the pedigree.</p></article>
+      <article class="kartica"><div class="znak">⚭</div>
+        <h3 lang="sr">Pametno parenje</h3><h3 lang="en">Smart mating</h3>
+        <p lang="sr">Za svaku ženku najmanje srodni mužjaci i očekivani inbriding potomka. Plan za celo stado sa granicom rizika koju sam biraš.</p>
+        <p lang="en">For every female the least related males and the expected inbreeding of the offspring. A plan for the whole herd with a risk limit you choose.</p></article>
+      <article class="kartica"><div class="znak">🔔</div>
+        <h3 lang="sr">Obaveštenja</h3><h3 lang="en">Notifications</h3>
+        <p lang="sr">Očekivani porođaj po vrsti, ter, karenca za meso i mleko, vakcinacije, lečenja i tvoji podsetnici – ništa ne promakne.</p>
+        <p lang="en">Expected birth by species, heat, meat and milk withdrawal periods, vaccinations, treatments and your own reminders – nothing slips.</p></article>
+      <article class="kartica"><div class="znak">📱</div>
+        <h3 lang="sr">Telefon u štali</h3><h3 lang="en">Phone in the barn</h3>
+        <p lang="sr">Pogledaj karton grla, upiši događaj ili skeniraj minđušu kamerom. Radi i bez interneta, a usklađuje se kad se veza vrati.</p>
+        <p lang="en">Open an animal's card, record an event or scan the ear tag with the camera. Works offline and syncs when the connection is back.</p></article>
+      <article class="kartica"><div class="znak">📄</div>
+        <h3 lang="sr">Rodoslovni list i izvoz</h3><h3 lang="en">Pedigree certificate and export</h3>
+        <p lang="sr">Rodoslovni list u 4 kolena za prodaju i sajmove, spisak stada za veterinara, izvoz u Excel i CSV, uvoz postojećih tablica.</p>
+        <p lang="en">A 4-generation pedigree certificate for sales and shows, a herd list for the vet, export to Excel and CSV, import of existing tables.</p></article>
+      <article class="kartica"><div class="znak">💾</div>
+        <h3 lang="sr">Rezervne kopije</h3><h3 lang="en">Backups</h3>
+        <p lang="sr">Automatska kopija svakog dana i druga kopija na OneDrive, Google Drive ili USB – i kad se računar pokvari, stado ostaje sačuvano.</p>
+        <p lang="en">An automatic copy every day and a second copy on OneDrive, Google Drive or USB – your herd stays safe even if the computer breaks.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="galerija" id="izgled">
+  <div class="sirina">
+    <div class="naslov">
+      <h2 lang="sr">Pogledaj kako izgleda</h2><h2 lang="en">See what it looks like</h2>
+      <p lang="sr">Jasan prikaz, sve na srpskom ili engleskom.</p>
+      <p lang="en">Clear layout, everything in English or Serbian.</p>
+    </div>
+    <div class="kartice" role="tablist">
+      <button type="button" role="tab" data-slika="grla" aria-selected="true"><span lang="sr">Grla</span><span lang="en">Animals</span></button>
+      <button type="button" role="tab" data-slika="parenje" aria-selected="false"><span lang="sr">Parenje</span><span lang="en">Mating</span></button>
+      <button type="button" role="tab" data-slika="stablo" aria-selected="false"><span lang="sr">Rodoslov</span><span lang="en">Pedigree</span></button>
+      <button type="button" role="tab" data-slika="karton" aria-selected="false"><span lang="sr">Karton grla</span><span lang="en">Animal card</span></button>
+      <button type="button" role="tab" data-slika="obavestenja" aria-selected="false"><span lang="sr">Obaveštenja</span><span lang="en">Notifications</span></button>
+      <button type="button" role="tab" data-slika="pregled" aria-selected="false"><span lang="sr">Pregled stada</span><span lang="en">Herd overview</span></button>
+    </div>
+    <div class="slika-okvir">
+      <img id="velika" src="slike/pc-sr-grla.webp" width="1240" height="800" alt="">
+      <p class="opis-slike" id="opis"></p>
+    </div>
+    <div class="telefoni">
+      <figure><img lang="sr" src="slike/tel-sr-danas.webp" width="585" height="1266" alt="" ><img lang="en" src="slike/tel-en-danas.webp" width="585" height="1266" alt="" >
+        <figcaption><span lang="sr">Danas: šta treba uraditi</span><span lang="en">Today: what needs doing</span></figcaption></figure>
+      <figure><img lang="sr" src="slike/tel-sr-grla.webp" width="585" height="1266" alt="" ><img lang="en" src="slike/tel-en-grla.webp" width="585" height="1266" alt="" >
+        <figcaption><span lang="sr">Grla i pretraga</span><span lang="en">Animals and search</span></figcaption></figure>
+      <figure><img lang="sr" src="slike/tel-sr-karton.webp" width="585" height="1266" alt="" ><img lang="en" src="slike/tel-en-karton.webp" width="585" height="1266" alt="" >
+        <figcaption><span lang="sr">Karton grla</span><span lang="en">Animal card</span></figcaption></figure>
+      <figure><img lang="sr" src="slike/tel-sr-parenje.webp" width="585" height="1266" alt="" ><img lang="en" src="slike/tel-en-parenje.webp" width="585" height="1266" alt="" >
+        <figcaption><span lang="sr">Parenje u štali</span><span lang="en">Mating in the barn</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="kako">
+  <div class="sirina">
+    <div class="naslov">
+      <h2 lang="sr">Kako radi</h2><h2 lang="en">How it works</h2>
+      <p lang="sr">Računar je glavni, telefon je uz tebe u štali.</p>
+      <p lang="en">The computer is the main record, the phone goes with you to the barn.</p>
+    </div>
+    <div class="koraci">
+      <div class="korak"><h3 lang="sr">Instaliraj na računar</h3><h3 lang="en">Install on your computer</h3>
+        <p lang="sr">Upiši grla ručno ili uvezi postojeću tablicu iz Excela. Roditelje upiši jednom – program sam slaže rodoslov.</p>
+        <p lang="en">Enter animals by hand or import an existing Excel table. Enter the parents once – the program builds the pedigree.</p></div>
+      <div class="korak"><h3 lang="sr">Upari telefon QR kodom</h3><h3 lang="en">Pair the phone with a QR code</h3>
+        <p lang="sr">Na telefonu instaliraj HerdDoc i skeniraj kod sa računara. Uparuje se samo jednom, a može više telefona.</p>
+        <p lang="en">Install HerdDoc on the phone and scan the code from the computer. You pair only once, and several phones can be paired.</p></div>
+      <div class="korak"><h3 lang="sr">Radi u štali</h3><h3 lang="en">Work in the barn</h3>
+        <p lang="sr">Upiši parenje, porođaj ili lečenje na telefonu. Sve se samo usklađuje sa računarom, šifrovano.</p>
+        <p lang="en">Record a mating, birth or treatment on the phone. Everything syncs with the computer by itself, encrypted.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="sirina">
+    <div class="sigurno">
+      <div>
+        <h2 lang="sr">Tvoji podaci ostaju tvoji</h2><h2 lang="en">Your data stays yours</h2>
+        <p lang="sr">Rodoslov dobrog stada vredi mnogo. Zato HerdDoc čuva podatke na tvom računaru, a ne na tuđem serveru.</p>
+        <p lang="en">The pedigree of a good herd is valuable. That is why HerdDoc keeps your data on your own computer, not on someone else's server.</p>
+      </div>
+      <ul>
+        <li lang="sr"><b>Na tvom računaru.</b> Stado, istorija i podešavanja su u tvom folderu Dokumenti.</li>
+        <li lang="en"><b>On your computer.</b> Herd, history and settings live in your Documents folder.</li>
+        <li lang="sr"><b>Šifrovano pri usklađivanju.</b> Pre slanja telefon i računar zaključaju podatke ključem (AES-256) koji postoji samo na tvojim uređajima.</li>
+        <li lang="en"><b>Encrypted when syncing.</b> Before sending, the phone and computer lock the data with a key (AES-256) that exists only on your devices.</li>
+        <li lang="sr"><b>Radi i bez interneta.</b> I računar i telefon rade normalno i kad veze nema.</li>
+        <li lang="en"><b>Works offline.</b> Both the computer and the phone work normally without a connection.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="cene" style="padding-top:0">
+  <div class="sirina">
+    <div class="naslov">
+      <h2 lang="sr">Cene</h2><h2 lang="en">Pricing</h2>
+      <p lang="sr">Prvih 30 dana sve radi bez ograničenja. Posle toga je besplatno do 20 grla u jednom stadu, a za veća stada i udruženja izaberi paket. Plaća se jednom godišnje.</p>
+      <p lang="en">For the first 30 days everything works without limits. After that it is free for up to 20 animals in one herd; for larger herds and associations choose a package. Billed once a year.</p>
+    </div>
+    <div class="cene">
+      <div class="paket">
+        <h3 lang="sr">Besplatno</h3><h3 lang="en">Free</h3>
+        <div class="cena">0 €</div>
+        <ul lang="sr"><li>do 20 aktivnih grla</li><li>sve mogućnosti programa</li><li>aplikacija za telefon</li></ul>
+        <ul lang="en"><li>up to 20 active animals</li><li>all program features</li><li>phone app</li></ul>
+        <a class="dugme drugo" href="#preuzmi"><span lang="sr">Preuzmi</span><span lang="en">Download</span></a>
+      </div>
+      <div class="paket">
+        <h3 lang="sr">Osnovni</h3><h3 lang="en">Basic</h3>
+        <div class="cena">49 € <small lang="sr">/ godišnje</small><small lang="en">/ year</small></div>
+        <ul lang="sr"><li>do 100 aktivnih grla</li><li>sve mogućnosti programa</li><li>aplikacija za telefon</li></ul>
+        <ul lang="en"><li>up to 100 active animals</li><li>all program features</li><li>phone app</li></ul>
+        <a class="dugme glavno kupi" data-paket="osnovni" href="#"><span lang="sr">Kupi</span><span lang="en">Buy</span></a>
+      </div>
+      <div class="paket istaknut">
+        <h3>Pro</h3>
+        <div class="cena">99 € <small lang="sr">/ godišnje</small><small lang="en">/ year</small></div>
+        <ul lang="sr"><li>do 500 aktivnih grla</li><li>sve mogućnosti programa</li><li>aplikacija za telefon</li></ul>
+        <ul lang="en"><li>up to 500 active animals</li><li>all program features</li><li>phone app</li></ul>
+        <a class="dugme glavno kupi" data-paket="pro" href="#"><span lang="sr">Kupi</span><span lang="en">Buy</span></a>
+      </div>
+      <div class="paket">
+        <h3 lang="sr">Farma</h3><h3 lang="en">Farm</h3>
+        <div class="cena">199 € <small lang="sr">/ godišnje</small><small lang="en">/ year</small></div>
+        <ul lang="sr"><li>bez ograničenja broja grla</li><li>sve mogućnosti programa</li><li>aplikacija za telefon</li></ul>
+        <ul lang="en"><li>unlimited animals</li><li>all program features</li><li>phone app</li></ul>
+        <a class="dugme glavno kupi" data-paket="farma" href="#"><span lang="sr">Kupi</span><span lang="en">Buy</span></a>
+      </div>
+      <div class="paket">
+        <h3 lang="sr">Udruženje</h3><h3 lang="en">Association</h3>
+        <div class="cena">399 € <small lang="sr">/ godišnje</small><small lang="en">/ year</small></div>
+        <ul lang="sr"><li>bez ograničenja broja grla</li><li>do 5 računara</li><li>posebna tablica za svakog člana</li></ul>
+        <ul lang="en"><li>unlimited animals</li><li>up to 5 computers</li><li>a separate table for every member</li></ul>
+        <a class="dugme glavno kupi" data-paket="udruzenje" href="#"><span lang="sr">Kupi</span><span lang="en">Buy</span></a>
+      </div>
+    </div>
+    <p class="cene-napomena" id="cene-napomena">
+      <span lang="sr">Posle kupovine ključ licence stiže mejlom za nekoliko sekundi. U programu klikni 🔑 u levom meniju i nalepi ključ. Podaci se nikad ne brišu, ni kad pretplata istekne.</span>
+      <span lang="en">After purchase the licence key arrives by e-mail within seconds. In the program click 🔑 in the left menu and paste the key. Your data is never deleted, even if the subscription ends.</span>
+    </p>
+  </div>
+</section>
+
+<section id="preuzmi" style="padding-top:0">
+  <div class="sirina">
+    <div class="naslov">
+      <h2 lang="sr">Preuzmi HerdDoc</h2><h2 lang="en">Download HerdDoc</h2>
+      <p lang="sr">Instaliraj program na računar, pa dodaj aplikaciju na telefon.</p>
+      <p lang="en">Install the program on your computer, then add the app to your phone.</p>
+    </div>
+    <div class="preuzmi">
+      <div class="kartica">
+        <div class="znak">💻</div>
+        <h3 lang="sr">Program za računar</h3><h3 lang="en">Computer program</h3>
+        <p lang="sr">Windows 10 i 11. Šest jezika: srpski, engleski, nemački, francuski, španski i portugalski. Nova verzija se instalira preko stare – podaci ostaju.</p>
+        <p lang="en">Windows 10 and 11. Six languages: English, Serbian, German, French, Spanish and Portuguese. A new version installs over the old one – your data stays.</p>
+        <a class="dugme drugo" href="https://apps.microsoft.com/detail/9NCM19Q4TMHJ" rel="noopener">
+          <span class="ik">🛍</span><span><span lang="sr">Microsoft Store</span><span lang="en">Microsoft Store</span>
+          <small lang="sr">automatska ažuriranja</small><small lang="en">automatic updates</small></span></a>
+        <a class="dugme glavno" href="https://github.com/maricevicnikola769-cell/farmer/releases/latest/download/HerdDoc-Setup.exe">
+          <span class="ik">⬇</span><span><span lang="sr">Preuzmi HerdDoc-Setup.exe</span><span lang="en">Download HerdDoc-Setup.exe</span>
+          <small lang="sr">najnovija verzija</small><small lang="en">latest version</small></span></a>
+        <p class="zahtevi"><span lang="sr">Ako Windows prikaže upozorenje „Windows je zaštitio računar“, klikni „Više informacija“ → „Ipak pokreni“.</span>
+          <span lang="en">If Windows shows “Windows protected your PC”, click “More info” → “Run anyway”.</span></p>
+      </div>
+      <div class="kartica">
+        <div class="znak">📱</div>
+        <h3 lang="sr">Aplikacija za telefon</h3><h3 lang="en">Phone app</h3>
+        <p lang="sr">Android (Chrome) i iPhone (Safari). Otvori adresu na telefonu i dodirni „Instaliraj HerdDoc“.</p>
+        <p lang="en">Android (Chrome) and iPhone (Safari). Open the address on your phone and tap “Install HerdDoc”.</p>
+        <div class="qr">
+          <img src="slike/qr-telefon.svg" alt="QR">
+          <p><span lang="sr">Skeniraj kamerom telefona ili otvori:</span><span lang="en">Scan with your phone camera or open:</span><br>
+            <a href="https://maricevicnikola769-cell.github.io/farmer/telefon/">maricevicnikola769-cell.github.io/farmer/telefon</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="kontakt" id="kontakt" style="padding-top:0">
+  <div class="sirina">
+    <h2 lang="sr">Pitanja? Piši nam</h2><h2 lang="en">Questions? Write to us</h2>
+    <p style="color:var(--tekst2)" lang="sr">Za pomoć, predloge ili prijavu problema – odgovaramo na srpskom i engleskom.</p>
+    <p style="color:var(--tekst2)" lang="en">For help, suggestions or problem reports – we answer in English and Serbian.</p>
+    <a class="mejl" href="mailto:herddoc7@gmail.com">herddoc7@gmail.com</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="sirina">
+    <span>© 2026 HerdDoc</span>
+    <span><a href="privacy.html"><span lang="sr">Politika privatnosti</span><span lang="en">Privacy policy</span></a> · <a href="mailto:herddoc7@gmail.com">herddoc7@gmail.com</a></span>
+  </div>
+</footer>
+
+<script>
+/* Linkovi za kupovinu (Lemon Squeezy). Dok su prazni, dugme piše „Uskoro“. */
+/* Za sada jedan link za sve pakete: kupac bira paket na stranici za plaćanje. */
+const LS_LINK = "https://herddoc.lemonsqueezy.com/checkout/buy/710eefef-aadf-4e44-bedd-1741b72dd8ac";
+const KUPOVINA = { osnovni: LS_LINK, pro: LS_LINK, farma: LS_LINK, udruzenje: LS_LINK };
+document.querySelectorAll(".kupi").forEach(a => {
+  const url = KUPOVINA[a.dataset.paket];
+  if (url) { a.href = url; a.rel = "noopener"; }
+  else { a.setAttribute("aria-disabled", "true"); a.innerHTML = '<span lang="sr">Uskoro</span><span lang="en">Coming soon</span>'; }
+});
+</script>
+<script>
+(function () {
+  var opisi = {
+    grla: ["Spisak grla sa markicama, roditeljima i inbridingom. Grla sa visokim inbridingom su označena crveno.",
+           "The animal list with ear tags, parents and inbreeding. Animals with high inbreeding are marked red."],
+    parenje: ["Pretraga partnera: za izabranu ženku najbolji mužjaci, sa zajedničkim genima i očekivanim inbridingom potomka.",
+              "Partner search: the best males for the chosen female, with shared genes and the expected inbreeding of the offspring."],
+    stablo: ["Rodoslovno stablo: predak koji se ponavlja je označen – to je uzrok inbridinga.",
+             "Pedigree tree: a repeated ancestor is highlighted – it is the cause of the inbreeding."],
+    karton: ["Karton grla: podaci, roditelji, dedovi i babe, udeo gena predaka i najbolji partneri.",
+             "Animal card: details, parents, grandparents, ancestors' share of genes and the best partners."],
+    obavestenja: ["Obaveštenja: vakcinacije, lečenja, karenca za meso i mleko i tvoji podsetnici.",
+                  "Notifications: vaccinations, treatments, meat and milk withdrawal periods and your reminders."],
+    pregled: ["Pregled stada: prosečan inbriding, najčešći očevi i provera grešaka u rodoslovu.",
+              "Herd overview: average inbreeding, most used sires and a check for pedigree errors."]
+  };
+  var jezik = "sr", slika = "grla";
+  try { jezik = localStorage.getItem("herddoc-jezik") || ""; } catch (e) { jezik = ""; }
+  if (jezik !== "sr" && jezik !== "en") {
+    var nav = (navigator.language || "en").toLowerCase();
+    jezik = /^(sr|hr|bs|sh|cnr|me)/.test(nav) ? "sr" : "en";
+  }
+  function prikaziSliku() {
+    var img = document.getElementById("velika");
+    img.src = "slike/pc-" + jezik + "-" + slika + ".webp";
+    img.alt = opisi[slika][jezik === "en" ? 1 : 0];
+    document.getElementById("opis").textContent = opisi[slika][jezik === "en" ? 1 : 0];
+    document.querySelectorAll("[data-slika]").forEach(function (b) { b.setAttribute("aria-selected", b.dataset.slika === slika ? "true" : "false"); });
+  }
+  function postaviJezik(j) {
+    jezik = j;
+    document.documentElement.setAttribute("data-lang", j);
+    document.documentElement.lang = j;
+    document.title = j === "en" ? "HerdDoc – herd pedigree, kinship and mating plans" : "HerdDoc – rodoslov stada, srodstvo i plan parenja";
+    document.querySelectorAll("[data-jezik]").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.jezik === j ? "true" : "false"); });
+    try { localStorage.setItem("herddoc-jezik", j); } catch (e) {}
+    prikaziSliku();
+  }
+  document.querySelectorAll("[data-jezik]").forEach(function (b) { b.addEventListener("click", function () { postaviJezik(b.dataset.jezik); }); });
+  document.querySelectorAll("[data-slika]").forEach(function (b) { b.addEventListener("click", function () { slika = b.dataset.slika; prikaziSliku(); }); });
+  var vrh = document.getElementById("vrh");
+  window.addEventListener("scroll", function () { vrh.classList.toggle("senka", window.scrollY > 8); }, { passive: true });
+  postaviJezik(jezik);
+})();
+</script>
+</body>
+</html>
