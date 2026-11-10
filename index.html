@@ -11,8 +11,8 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:title" content="HerdDoc – herd pedigree, kinship and mating plans">
 <meta property="og:description" content="Pedigree, inbreeding and the best mating partners for every animal – on your computer and in the barn on your phone.">
-<meta property="og:image" content="https://getherddoc.com/slike/og.png">
-<meta property="og:url" content="https://getherddoc.com/">
+<meta property="og:image" content="https://herddoc.com/slike/og.png">
+<meta property="og:url" content="https://herddoc.com/">
 <style>
 :root{
   --zelena:#2E5E45; --zelena-tamna:#244B37; --zuta:#F4C400; --pozadina:#F3F5F1; --povrs:#FFFFFF;
@@ -191,7 +191,7 @@ footer a{color:var(--tekst2)}
         <a class="dugme glavno" href="#preuzmi"><span class="ik">⬇</span><span><span lang="sr">Preuzmi za Windows</span><span lang="en">Download for Windows</span></span></a>
         <a class="dugme drugo" href="#izgled"><span lang="sr">Pogledaj program</span><span lang="en">See the program</span></a>
       </div>
-      <p class="sitno"><span lang="sr">Srpski i engleski · goveda, ovce, koze, svinje, konji</span><span lang="en">English and Serbian · cattle, sheep, goats, pigs, horses</span></p>
+      <p class="sitno"><span lang="sr">6 jezika · goveda, ovce, koze, svinje, konji i vrste koje sam dodaš</span><span lang="en">6 languages · cattle, sheep, goats, pigs, horses and species you add yourself</span></p>
     </div>
     <div class="prikaz">
       <img class="pc" lang="sr" src="slike/pc-sr-stablo.webp" width="1240" height="800" alt="HerdDoc – rodoslovno stablo grla sa ponovljenim pretkom">
@@ -385,12 +385,14 @@ footer a{color:var(--tekst2)}
         <h3 lang="sr">Program za računar</h3><h3 lang="en">Computer program</h3>
         <p lang="sr">Windows 10 i 11. Šest jezika: srpski, engleski, nemački, francuski, španski i portugalski. Nova verzija se instalira preko stare – podaci ostaju.</p>
         <p lang="en">Windows 10 and 11. Six languages: English, Serbian, German, French, Spanish and Portuguese. A new version installs over the old one – your data stays.</p>
-        <a class="dugme drugo" href="https://apps.microsoft.com/detail/9NCM19Q4TMHJ" rel="noopener">
+        <a class="dugme glavno" href="https://apps.microsoft.com/detail/9NCM19Q4TMHJ" rel="noopener">
           <span class="ik">🛍</span><span><span lang="sr">Microsoft Store</span><span lang="en">Microsoft Store</span>
           <small lang="sr">automatska ažuriranja</small><small lang="en">automatic updates</small></span></a>
-        <a class="dugme glavno" href="https://github.com/maricevicnikola769-cell/farmer/releases/latest/download/HerdDoc-Setup.exe">
+        <a class="dugme drugo" href="https://github.com/maricevicnikola769-cell/farmer/releases/latest/download/HerdDoc-Setup.exe">
           <span class="ik">⬇</span><span><span lang="sr">Preuzmi HerdDoc-Setup.exe</span><span lang="en">Download HerdDoc-Setup.exe</span>
           <small lang="sr">najnovija verzija</small><small lang="en">latest version</small></span></a>
+        <p class="zahtevi"><span lang="sr">Posle instalacije iz Microsoft Store-a HerdDoc nađeš u Start meniju.</span>
+          <span lang="en">After installing from the Microsoft Store, find HerdDoc in the Start menu.</span></p>
         <p class="zahtevi"><span lang="sr">Ako Windows prikaže upozorenje „Windows je zaštitio računar“, klikni „Više informacija“ → „Ipak pokreni“.</span>
           <span lang="en">If Windows shows “Windows protected your PC”, click “More info” → “Run anyway”.</span></p>
       </div>
@@ -428,7 +430,9 @@ footer a{color:var(--tekst2)}
 
 <script>
 /* Linkovi za kupovinu (Lemon Squeezy). Dok su prazni, dugme piše „Uskoro“. */
-const KUPOVINA = { osnovni: "", pro: "", farma: "", udruzenje: "" };
+/* Za sada jedan link za sve pakete: kupac bira paket na stranici za plaćanje. */
+const LS_LINK = "https://herddoc.lemonsqueezy.com/checkout/buy/710eefef-aadf-4e44-bedd-1741b72dd8ac";
+const KUPOVINA = { osnovni: LS_LINK, pro: LS_LINK, farma: LS_LINK, udruzenje: LS_LINK };
 document.querySelectorAll(".kupi").forEach(a => {
   const url = KUPOVINA[a.dataset.paket];
   if (url) { a.href = url; a.rel = "noopener"; }
