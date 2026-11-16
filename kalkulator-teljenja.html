@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kalkulator teljenja, jagnjenja i prašenja – datum porođaja | HerdDoc</title>
+<meta name="description" content="Besplatan kalkulator teljenja: unesi datum osemenjavanja i saznaj kada će se krava oteliti. Radi i za ovce, koze, krmače i kobile, sa datumom provere tera.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://herddoc.com/kalkulator-teljenja.html">
+<link rel="alternate" hreflang="sr" href="https://herddoc.com/kalkulator-teljenja.html">
+<link rel="alternate" hreflang="en" href="https://herddoc.com/gestation-calculator.html">
+<link rel="alternate" hreflang="x-default" href="https://herddoc.com/gestation-calculator.html">
+<meta name="theme-color" content="#2E5E45">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="Kalkulator teljenja, jagnjenja i prašenja – datum porođaja | HerdDoc">
+<meta property="og:description" content="Besplatan kalkulator teljenja: unesi datum osemenjavanja i saznaj kada će se krava oteliti. Radi i za ovce, koze, krmače i kobile, sa datumom provere tera.">
+<meta property="og:image" content="https://herddoc.com/slike/og.png">
+<meta property="og:url" content="https://herddoc.com/kalkulator-teljenja.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="HerdDoc">
+<meta property="og:locale" content="sr_RS">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="stil.css">
+<script type="application/ld+json">
+[
+ {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+   {
+    "@type": "ListItem",
+    "position": 1,
+    "name": "HerdDoc",
+    "item": "https://herddoc.com/"
+   },
+   {
+    "@type": "ListItem",
+    "position": 2,
+    "name": "Kalkulator teljenja",
+    "item": "https://herddoc.com/kalkulator-teljenja.html"
+   }
+  ]
+ },
+ {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+   {
+    "@type": "Question",
+    "name": "Koliko traje steonost krave?",
+    "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "Prosečno 283 dana, obično između 275 i 290 dana."
+    }
+   },
+   {
+    "@type": "Question",
+    "name": "Koliko traje bremenitost ovce i koze?",
+    "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "Kod ovce oko 150 dana (romanovska oko 140), kod koze oko 150 dana."
+    }
+   },
+   {
+    "@type": "Question",
+    "name": "Koliko traje suprasnost krmače?",
+    "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "Prosečno 114 dana – 3 meseca, 3 nedelje i 3 dana."
+    }
+   },
+   {
+    "@type": "Question",
+    "name": "Koliko traje ždrebnost kobile?",
+    "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "Prosečno oko 340 dana, normalno od 320 do 360 dana."
+    }
+   }
+  ]
+ }
+]
+</script>
+</head>
+<body>
+<header class="vrh">
+  <div class="sirina">
+    <a class="marka" href="./"><img src="favicon.svg" alt="" width="34" height="34">HerdDoc</a>
+    <nav class="meni" aria-label="Meni"><a href="./">Početna</a><a href="rodoslov-i-inbriding.html">Inbriding</a><a href="kalkulator-teljenja.html">Kalkulator teljenja</a><a href="./#cene">Cene</a><a class="preuzmi-mali" href="./#preuzmi">Preuzmi</a></nav>
+  </div>
+</header>
+<main>
+<div class="sirina mrvice"><a href="./">HerdDoc</a> › Kalkulator teljenja</div>
+<section class="uvod">
+  <div class="sirina">
+    <div>
+      <span class="oznaka">Besplatan alat</span>
+      <h1>Kalkulator teljenja – kada će se krava oteliti?</h1>
+      <p class="pod">Izaberi vrstu i unesi datum parenja ili osemenjavanja. Kalkulator pokazuje očekivani porođaj, normalan raspon i kada da proveriš da li se životinja vratila u ter.</p>
+      <div class="akcije">
+        <a class="dugme glavno" href="./#preuzmi">⬇ Preuzmi za Windows</a>
+        <a class="dugme drugo" href="./#cene">Pogledaj cene</a>
+      </div>
+      <p class="sitno">Windows 10/11 + aplikacija za telefon · radi bez interneta · 6 jezika</p>
+    </div>
+    <div><div class="kalk" id="kalk">
+  <div class="polja">
+    <div><label for="vrsta">Vrsta</label><select id="vrsta"><option value="krava">Krava (teljenje)</option><option value="ovca">Ovca (jagnjenje)</option><option value="romanov">Romanovska ovca</option><option value="koza">Koza (jarenje)</option><option value="krmaca">Krmača (prašenje)</option><option value="kobila">Kobila (ždrebljenje)</option></select></div>
+    <div><label for="datum">Datum parenja / osemenjavanja</label><input type="date" id="datum"></div>
+  </div>
+  <div class="rezultat" aria-live="polite">
+    <div class="mali">Očekivani porođaj</div>
+    <div class="glavni" id="r-glavni">–</div>
+    <p id="r-raspon"></p>
+    <p id="r-ter"></p>
+    <p class="mali" id="r-ostalo"></p>
+  </div>
+</div></div>
+  </div>
+</section>
+<section style="padding-top:8px">
+  <div class="sirina usko tekst">
+<h2>Koliko traje gravidnost kod domaćih životinja</h2>
+<p>Kalkulator koristi prosečno trajanje gravidnosti. Stvarni porođaj zavisi od rase, starosti, ishrane i broja mladih, pa je normalno da bude nekoliko dana ranije ili kasnije.</p>
+<table class="tabela"><tr><th>Vrsta</th><th>Prosek</th><th>Raspon (dana)</th><th>Ciklus tera (dana)</th></tr><tr><td>Krava (teljenje)</td><td>283 dana</td><td>275–290</td><td>~21</td></tr><tr><td>Ovca (jagnjenje)</td><td>150 dana</td><td>145–152</td><td>~17</td></tr><tr><td>Romanovska ovca</td><td>140 dana</td><td>138–143</td><td>~17</td></tr><tr><td>Koza (jarenje)</td><td>150 dana</td><td>145–151</td><td>~21</td></tr><tr><td>Krmača (prašenje)</td><td>114 dana</td><td>110–120</td><td>~21</td></tr><tr><td>Kobila (ždrebljenje)</td><td>340 dana</td><td>320–360</td><td>~21</td></tr></table>
+<h2>Kako se računa datum teljenja</h2>
+<p>Na datum osemenjavanja doda se prosečno trajanje steonosti – kod krave 283 dana. Na primer, krava osemenjena 1. marta oteliće se oko 9. decembra. Mnogi odgajivači koriste i „pravilo 9 meseci i 10 dana“, ali je tačnije računati po danima.</p>
+<h2>Provera tera</h2>
+<p>Ako životinja posle parenja nije ostala gravidna, obično se vraća u ter posle jednog ciklusa: krava, koza, krmača i kobila posle oko 21 dan, a ovca posle oko 17 dana. Zato je dobro posmatrati je oko tog datuma.</p>
+<h2>Za celo stado</h2>
+<p>Kalkulator je za jedno grlo. Za celo stado <a href="./">HerdDoc</a> sam računa očekivane porođaje čim upišeš parenje, pravi spisak za sledeće dane i šalje podsetnik i na telefon. Pogledaj kako radi za <a href="evidencija-goveda.html">goveda</a>, <a href="evidencija-ovaca-i-koza.html">ovce i koze</a>, <a href="evidencija-svinja.html">svinje</a> i <a href="evidencija-konja.html">konje</a>.</p>
+  </div>
+</section>
+<section>
+  <div class="sirina usko pitanja">
+    <h2>Česta pitanja</h2>
+    <details><summary>Koliko traje steonost krave?</summary><p>Prosečno 283 dana, obično između 275 i 290 dana.</p></details><details><summary>Koliko traje bremenitost ovce i koze?</summary><p>Kod ovce oko 150 dana (romanovska oko 140), kod koze oko 150 dana.</p></details><details><summary>Koliko traje suprasnost krmače?</summary><p>Prosečno 114 dana – 3 meseca, 3 nedelje i 3 dana.</p></details><details><summary>Koliko traje ždrebnost kobile?</summary><p>Prosečno oko 340 dana, normalno od 320 do 360 dana.</p></details>
+  </div>
+</section>
+<section style="padding-top:0">
+  <div class="sirina">
+    <div class="okvir-poziv">
+      <div><h2>Probaj HerdDoc besplatno 30 dana</h2><p>Posle toga besplatno do 20 grla. Za veća stada od 49 € godišnje.</p></div>
+      <a class="dugme" href="./#preuzmi">⬇ Preuzmi za Windows</a>
+    </div>
+  </div>
+</section>
+<section style="padding-top:0">
+  <div class="sirina">
+    <h2>Pogledaj i</h2>
+    <div class="vezano"><a href="evidencija-goveda.html">Evidencija goveda<span>krave, junice, bikovi</span></a><a href="evidencija-ovaca-i-koza.html">Evidencija ovaca i koza<span>jagnjenje, jarenje, mleko</span></a><a href="evidencija-svinja.html">Evidencija svinja<span>krmače, prašenje, tov</span></a><a href="evidencija-konja.html">Evidencija konja<span>kobile, ždrebad, pedigre</span></a><a href="rodoslov-i-inbriding.html">Rodoslov i inbriding<span>šta je inbriding i kako ga izbeći</span></a></div>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="sirina kolone">
+    <div>
+      <div class="linkovi"><a href="evidencija-goveda.html">Evidencija goveda</a><a href="evidencija-ovaca-i-koza.html">Evidencija ovaca i koza</a><a href="evidencija-svinja.html">Evidencija svinja</a><a href="evidencija-konja.html">Evidencija konja</a><a href="rodoslov-i-inbriding.html">Rodoslov i inbriding</a><a href="kalkulator-teljenja.html">Kalkulator teljenja</a></div>
+      <div class="linkovi" style="margin-top:8px"><a href="livestock-herd-software.html">Herd management software</a><a href="gestation-calculator.html">Gestation calculator</a></div>
+    </div>
+    <div>© 2026 HerdDoc · <a href="privacy.html">Politika privatnosti</a> · <a href="mailto:herddoc7@gmail.com">herddoc7@gmail.com</a></div>
+  </div>
+</footer>
+<script>
+(function(){
+  var P = {"krava": [283, 275, 290, 21], "ovca": [150, 145, 152, 17], "romanov": [140, 138, 143, 17], "koza": [150, 145, 151, 21], "krmaca": [114, 110, 120, 21], "kobila": [340, 320, 360, 21]};
+  var T = {"vrsta": "Vrsta", "datum": "Datum parenja / osemenjavanja", "glavni": "Očekivani porođaj", "izmedju": "Normalno između", "proveri": "Proveri ter oko", "proveri2": "ako se vrati u ter, nije ostala gravidna", "ostalo": "dana do porođaja", "proslo": "dana od parenja", "posle": "prošlo je od očekivanog datuma", "dana": "dana", "th": ["Vrsta", "Prosek", "Raspon (dana)", "Ciklus tera (dana)"], "jezik": "sr-Latn-RS"};
+  var JEZ = T.jezik;
+  var en = false;
+  var vrsta = document.getElementById("vrsta"), datum = document.getElementById("datum");
+  function dodaj(d, n){ var x = new Date(d.getTime()); x.setDate(x.getDate() + n); return x; }
+  function f(d, dug){
+    if (en) return d.toLocaleDateString(JEZ, dug ? {weekday:"long", day:"numeric", month:"long", year:"numeric"} : {day:"numeric", month:"short", year:"numeric"});
+    var dani = ["nedelja","ponedeljak","utorak","sreda","četvrtak","petak","subota"];
+    var s = d.getDate() + ". " + (d.getMonth()+1) + ". " + d.getFullYear() + ".";
+    return dug ? dani[d.getDay()] + ", " + s : s;
+  }
+  function racunaj(){
+    var v = P[vrsta.value]; if (!datum.value) return;
+    var p = datum.value.split("-"); var d = new Date(+p[0], +p[1]-1, +p[2]);
+    document.getElementById("r-glavni").textContent = f(dodaj(d, v[0]), true);
+    document.getElementById("r-raspon").innerHTML = T.izmedju + " <b>" + f(dodaj(d, v[1])) + "</b> – <b>" + f(dodaj(d, v[2])) + "</b>";
+    document.getElementById("r-ter").innerHTML = T.proveri + " <b>" + f(dodaj(d, v[3])) + "</b> (" + T.proveri2 + ")";
+    var danas = new Date(); danas.setHours(0,0,0,0);
+    var proslo = Math.round((danas - d) / 864e5), ostalo = v[0] - proslo;
+    var t = "";
+    if (proslo >= 0 && ostalo >= 0) t = proslo + " " + T.proslo + " · " + ostalo + " " + T.ostalo;
+    else if (ostalo < 0) t = T.posle + " " + (-ostalo) + " " + T.dana;
+    document.getElementById("r-ostalo").textContent = t;
+    try { localStorage.setItem("hd-kalk-vrsta", vrsta.value); } catch (e) {}
+  }
+  try { var z = localStorage.getItem("hd-kalk-vrsta"); if (z && P[z]) vrsta.value = z; } catch (e) {}
+  var dn = new Date(); datum.value = dn.getFullYear() + "-" + String(dn.getMonth()+1).padStart(2,"0") + "-" + String(dn.getDate()).padStart(2,"0");
+  vrsta.addEventListener("change", racunaj); datum.addEventListener("input", racunaj); datum.addEventListener("change", racunaj);
+  racunaj();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+/* Zajednički stil za vodiče i kalkulator (početna strana ima svoj stil u index.html) */
+:root{
+  --zelena:#2E5E45; --zelena-tamna:#244B37; --zuta:#F4C400; --pozadina:#F3F5F1; --povrs:#FFFFFF;
+  --tekst:#18221C; --tekst2:#56645A; --linija:#DDE3DA; --svetla-zelena:#E7EFE9;
+  --senka:0 10px 30px rgba(24,34,28,.10), 0 2px 6px rgba(24,34,28,.06);
+  --font:"Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--pozadina);color:var(--tekst);font-family:var(--font);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--zelena)}
+.sirina{max-width:1100px;margin:0 auto;padding:0 20px}
+.usko{max-width:780px}
+
+.vrh{position:sticky;top:0;z-index:20;background:rgba(243,245,241,.94);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--linija)}
+.vrh .sirina{display:flex;align-items:center;gap:14px;height:64px}
+.marka{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--tekst);font-weight:800;font-size:20px}
+.marka img{width:34px;height:34px}
+.meni{display:flex;gap:4px;margin-left:auto;align-items:center}
+.meni a{color:var(--tekst2);text-decoration:none;font-size:15px;font-weight:600;padding:8px 12px;border-radius:8px}
+.meni a:hover{color:var(--tekst);background:var(--svetla-zelena)}
+.meni a.preuzmi-mali{background:var(--zelena);color:#fff}
+.meni a.preuzmi-mali:hover{background:var(--zelena-tamna);color:#fff}
+
+.mrvice{font-size:14px;color:var(--tekst2);padding-top:22px}
+.mrvice a{color:var(--tekst2)}
+
+.uvod{padding:26px 0 40px}
+.uvod .sirina{display:grid;grid-template-columns:1.05fr 1fr;gap:44px;align-items:center}
+.oznaka{display:inline-block;background:var(--svetla-zelena);color:var(--zelena);font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+h1{font-size:clamp(30px,4vw,46px);line-height:1.1;letter-spacing:-.025em;margin:16px 0;font-weight:800}
+.pod{font-size:19px;color:var(--tekst2);margin:0 0 24px}
+.akcije{display:flex;flex-wrap:wrap;gap:12px}
+.dugme{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:16px;padding:13px 22px;border-radius:12px;border:1px solid transparent}
+.dugme.glavno{background:var(--zelena);color:#fff}
+.dugme.glavno:hover{background:var(--zelena-tamna)}
+.dugme.drugo{background:var(--povrs);color:var(--tekst);border-color:var(--linija)}
+.sitno{font-size:14px;color:var(--tekst2);margin-top:12px}
+.slika{border-radius:12px;box-shadow:var(--senka);border:1px solid var(--linija)}
+
+section{padding:48px 0}
+h2{font-size:clamp(24px,2.8vw,32px);line-height:1.2;letter-spacing:-.02em;margin:0 0 14px;font-weight:800}
+h3{font-size:19px;margin:0 0 6px}
+.tekst p{margin:0 0 16px}
+.tekst ul{margin:0 0 18px;padding-left:22px}
+.tekst li{margin-bottom:6px}
+.tekst h2{margin-top:36px}
+.tekst h2:first-child{margin-top:0}
+
+.mreza{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+.kartica{background:var(--povrs);border:1px solid var(--linija);border-radius:16px;padding:22px}
+.kartica .znak{width:42px;height:42px;border-radius:12px;background:var(--svetla-zelena);display:grid;place-items:center;font-size:21px;margin-bottom:12px}
+.kartica p{margin:0;color:var(--tekst2);font-size:15.5px}
+
+table.tabela{width:100%;border-collapse:collapse;background:var(--povrs);border:1px solid var(--linija);border-radius:12px;overflow:hidden;margin:6px 0 20px;font-size:16px}
+.tabela th,.tabela td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--linija)}
+.tabela th{background:var(--svetla-zelena);font-size:14.5px}
+.tabela tr:last-child td{border-bottom:0}
+
+.okvir-poziv{background:var(--zelena);color:#fff;border-radius:20px;padding:36px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
+.okvir-poziv h2{color:#fff;margin:0 0 6px}
+.okvir-poziv p{margin:0;color:rgba(255,255,255,.85)}
+.okvir-poziv .dugme{background:var(--zuta);color:var(--tekst)}
+
+.pitanja details{background:var(--povrs);border:1px solid var(--linija);border-radius:14px;padding:4px 20px;margin-bottom:10px}
+.pitanja summary{cursor:pointer;font-weight:700;padding:14px 28px 14px 0;list-style:none;position:relative}
+.pitanja summary::-webkit-details-marker{display:none}
+.pitanja summary::after{content:"+";position:absolute;right:0;top:12px;font-size:22px;color:var(--zelena)}
+.pitanja details[open] summary::after{content:"–"}
+.pitanja details p{margin:0 0 16px;color:var(--tekst2)}
+
+.vezano{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.vezano a{display:block;background:var(--povrs);border:1px solid var(--linija);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--tekst);font-weight:700}
+.vezano a span{display:block;font-weight:400;font-size:14.5px;color:var(--tekst2);margin-top:2px}
+.vezano a:hover{border-color:var(--zelena)}
+
+/* kalkulator */
+.kalk{background:var(--povrs);border:1px solid var(--linija);border-radius:18px;padding:26px;box-shadow:var(--senka)}
+.kalk .polja{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.kalk label{display:block;font-weight:700;font-size:15px;margin-bottom:6px}
+.kalk select,.kalk input{width:100%;font:16px var(--font);padding:11px 12px;border:1px solid var(--linija);border-radius:10px;background:#fff;color:var(--tekst)}
+.rezultat{margin-top:20px;background:var(--svetla-zelena);border-radius:14px;padding:20px}
+.rezultat .glavni{font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.01em;color:var(--zelena);line-height:1.2}
+.rezultat p{margin:8px 0 0;color:var(--tekst)}
+.rezultat .mali{color:var(--tekst2);font-size:15px}
+
+footer{border-top:1px solid var(--linija);padding:30px 0;color:var(--tekst2);font-size:14px;margin-top:20px}
+footer .kolone{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+footer a{color:var(--tekst2)}
+footer .linkovi{display:flex;flex-wrap:wrap;gap:6px 16px}
+
+@media (max-width:900px){
+  .uvod .sirina{grid-template-columns:1fr}
+  .mreza,.vezano{grid-template-columns:1fr 1fr}
+  .meni a:not(.preuzmi-mali){display:none}
+}
+@media (max-width:600px){
+  body{font-size:16px}
+  .mreza,.vezano,.kalk .polja{grid-template-columns:1fr}
+  .okvir-poziv{padding:26px 22px}
+  .dugme{width:100%;justify-content:center}
+  .tabela th,.tabela td{padding:9px 10px}
+}

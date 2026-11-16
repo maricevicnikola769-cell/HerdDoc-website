@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gestation Calculator for Cows, Sheep, Goats, Pigs &amp; Horses | HerdDoc</title>
+<meta name="description" content="Free gestation calculator: enter the breeding date and get the due date for cows (calving), ewes (lambing), goats, sows (farrowing) and mares (foaling), plus the heat-check date.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://herddoc.com/gestation-calculator.html">
+<link rel="alternate" hreflang="sr" href="https://herddoc.com/kalkulator-teljenja.html">
+<link rel="alternate" hreflang="en" href="https://herddoc.com/gestation-calculator.html">
+<link rel="alternate" hreflang="x-default" href="https://herddoc.com/gestation-calculator.html">
+<meta name="theme-color" content="#2E5E45">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="Gestation Calculator for Cows, Sheep, Goats, Pigs &amp; Horses | HerdDoc">
+<meta property="og:description" content="Free gestation calculator: enter the breeding date and get the due date for cows (calving), ewes (lambing), goats, sows (farrowing) and mares (foaling), plus the heat-check date.">
+<meta property="og:image" content="https://herddoc.com/slike/og.png">
+<meta property="og:url" content="https://herddoc.com/gestation-calculator.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="HerdDoc">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="stil.css">
+<script type="application/ld+json">
+[
+ {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+   {
+    "@type": "ListItem",
+    "position": 1,
+    "name": "HerdDoc",
+    "item": "https://herddoc.com/"
+   },
+   {
+    "@type": "ListItem",
+    "position": 2,
+    "name": "Gestation calculator",
+    "item": "https://herddoc.com/gestation-calculator.html"
+   }
+  ]
+ },
+ {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+   {
+    "@type": "Question",
+    "name": "How long is a cow pregnant?",
+    "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "On average 283 days, usually between 275 and 290 days."
+    }
+   },
+   {
+    "@type": "Question",
+    "name": "How long is a sheep or goat pregnant?",
+    "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "About 150 days for sheep (Romanov around 140) and about 150 days for goats."
+    }
+   },
+   {
+    "@type": "Question",
+    "name": "How long is a sow pregnant?",
+    "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "On average 114 days – 3 months, 3 weeks and 3 days."
+    }
+   },
+   {
+    "@type": "Question",
+    "name": "How long is a mare pregnant?",
+    "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "About 340 days on average, normally 320 to 360 days."
+    }
+   }
+  ]
+ }
+]
+</script>
+</head>
+<body>
+<header class="vrh">
+  <div class="sirina">
+    <a class="marka" href="./"><img src="favicon.svg" alt="" width="34" height="34">HerdDoc</a>
+    <nav class="meni" aria-label="Menu"><a href="./">Home</a><a href="livestock-herd-software.html">Software</a><a href="gestation-calculator.html">Gestation calculator</a><a href="./#cene">Pricing</a><a class="preuzmi-mali" href="./#preuzmi">Download</a></nav>
+  </div>
+</header>
+<main>
+<div class="sirina mrvice"><a href="./">HerdDoc</a> › Gestation calculator</div>
+<section class="uvod">
+  <div class="sirina">
+    <div>
+      <span class="oznaka">Free tool</span>
+      <h1>Gestation calculator – when is she due?</h1>
+      <p class="pod">Choose the species and enter the mating or insemination date. You get the expected due date, the normal range and when to check for a return to heat.</p>
+      <div class="akcije">
+        <a class="dugme glavno" href="./#preuzmi">⬇ Download for Windows</a>
+        <a class="dugme drugo" href="./#cene">See pricing</a>
+      </div>
+      <p class="sitno">Windows 10/11 + phone app · works offline · 6 languages</p>
+    </div>
+    <div><div class="kalk" id="kalk">
+  <div class="polja">
+    <div><label for="vrsta">Species</label><select id="vrsta"><option value="krava">Cow (calving)</option><option value="ovca">Ewe (lambing)</option><option value="romanov">Romanov ewe</option><option value="koza">Goat (kidding)</option><option value="krmaca">Sow (farrowing)</option><option value="kobila">Mare (foaling)</option></select></div>
+    <div><label for="datum">Mating / insemination date</label><input type="date" id="datum"></div>
+  </div>
+  <div class="rezultat" aria-live="polite">
+    <div class="mali">Expected due date</div>
+    <div class="glavni" id="r-glavni">–</div>
+    <p id="r-raspon"></p>
+    <p id="r-ter"></p>
+    <p class="mali" id="r-ostalo"></p>
+  </div>
+</div></div>
+  </div>
+</section>
+<section style="padding-top:8px">
+  <div class="sirina usko tekst">
+<h2>Gestation length in farm animals</h2>
+<p>The calculator uses the average gestation length. The actual birth depends on breed, age, nutrition and litter size, so a few days earlier or later is normal.</p>
+<table class="tabela"><tr><th>Species</th><th>Average</th><th>Range (days)</th><th>Heat cycle (days)</th></tr><tr><td>Cow (calving)</td><td>283 days</td><td>275–290</td><td>~21</td></tr><tr><td>Ewe (lambing)</td><td>150 days</td><td>145–152</td><td>~17</td></tr><tr><td>Romanov ewe</td><td>140 days</td><td>138–143</td><td>~17</td></tr><tr><td>Goat (kidding)</td><td>150 days</td><td>145–151</td><td>~21</td></tr><tr><td>Sow (farrowing)</td><td>114 days</td><td>110–120</td><td>~21</td></tr><tr><td>Mare (foaling)</td><td>340 days</td><td>320–360</td><td>~21</td></tr></table>
+<h2>How the calving date is calculated</h2>
+<p>Add the average gestation length to the breeding date – 283 days for a cow. A cow inseminated on 1 March is due around 9 December.</p>
+<h2>Heat check</h2>
+<p>If the animal did not conceive, she usually comes back into heat after one cycle: about 21 days for cows, goats, sows and mares and about 17 days for ewes.</p>
+<h2>For the whole herd</h2>
+<p>This calculator is for one animal. <a href="livestock-herd-software.html">HerdDoc</a> calculates due dates for the whole herd as soon as you record a mating, lists what is coming up and reminds you on your phone too.</p>
+  </div>
+</section>
+<section>
+  <div class="sirina usko pitanja">
+    <h2>Frequently asked questions</h2>
+    <details><summary>How long is a cow pregnant?</summary><p>On average 283 days, usually between 275 and 290 days.</p></details><details><summary>How long is a sheep or goat pregnant?</summary><p>About 150 days for sheep (Romanov around 140) and about 150 days for goats.</p></details><details><summary>How long is a sow pregnant?</summary><p>On average 114 days – 3 months, 3 weeks and 3 days.</p></details><details><summary>How long is a mare pregnant?</summary><p>About 340 days on average, normally 320 to 360 days.</p></details>
+  </div>
+</section>
+<section style="padding-top:0">
+  <div class="sirina">
+    <div class="okvir-poziv">
+      <div><h2>Try HerdDoc free for 30 days</h2><p>Then free up to 20 animals. From €49 a year for larger herds.</p></div>
+      <a class="dugme" href="./#preuzmi">⬇ Download for Windows</a>
+    </div>
+  </div>
+</section>
+<section style="padding-top:0">
+  <div class="sirina">
+    <h2>See also</h2>
+    <div class="vezano"><a href="livestock-herd-software.html">Herd management software<span>pedigree, mating, offline</span></a></div>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="sirina kolone">
+    <div>
+      <div class="linkovi"><a href="evidencija-goveda.html">Evidencija goveda</a><a href="evidencija-ovaca-i-koza.html">Evidencija ovaca i koza</a><a href="evidencija-svinja.html">Evidencija svinja</a><a href="evidencija-konja.html">Evidencija konja</a><a href="rodoslov-i-inbriding.html">Rodoslov i inbriding</a><a href="kalkulator-teljenja.html">Kalkulator teljenja</a></div>
+      <div class="linkovi" style="margin-top:8px"><a href="livestock-herd-software.html">Herd management software</a><a href="gestation-calculator.html">Gestation calculator</a></div>
+    </div>
+    <div>© 2026 HerdDoc · <a href="privacy.html">Privacy policy</a> · <a href="mailto:herddoc7@gmail.com">herddoc7@gmail.com</a></div>
+  </div>
+</footer>
+<script>
+(function(){
+  var P = {"krava": [283, 275, 290, 21], "ovca": [150, 145, 152, 17], "romanov": [140, 138, 143, 17], "koza": [150, 145, 151, 21], "krmaca": [114, 110, 120, 21], "kobila": [340, 320, 360, 21]};
+  var T = {"vrsta": "Species", "datum": "Mating / insemination date", "glavni": "Expected due date", "izmedju": "Normal range", "proveri": "Check for return to heat around", "proveri2": "if she comes back into heat, she is not pregnant", "ostalo": "days to go", "proslo": "days since mating", "posle": "past the average due date by", "dana": "days", "th": ["Species", "Average", "Range (days)", "Heat cycle (days)"], "jezik": "en-GB"};
+  var JEZ = T.jezik;
+  var en = true;
+  var vrsta = document.getElementById("vrsta"), datum = document.getElementById("datum");
+  function dodaj(d, n){ var x = new Date(d.getTime()); x.setDate(x.getDate() + n); return x; }
+  function f(d, dug){
+    if (en) return d.toLocaleDateString(JEZ, dug ? {weekday:"long", day:"numeric", month:"long", year:"numeric"} : {day:"numeric", month:"short", year:"numeric"});
+    var dani = ["nedelja","ponedeljak","utorak","sreda","četvrtak","petak","subota"];
+    var s = d.getDate() + ". " + (d.getMonth()+1) + ". " + d.getFullYear() + ".";
+    return dug ? dani[d.getDay()] + ", " + s : s;
+  }
+  function racunaj(){
+    var v = P[vrsta.value]; if (!datum.value) return;
+    var p = datum.value.split("-"); var d = new Date(+p[0], +p[1]-1, +p[2]);
+    document.getElementById("r-glavni").textContent = f(dodaj(d, v[0]), true);
+    document.getElementById("r-raspon").innerHTML = T.izmedju + " <b>" + f(dodaj(d, v[1])) + "</b> – <b>" + f(dodaj(d, v[2])) + "</b>";
+    document.getElementById("r-ter").innerHTML = T.proveri + " <b>" + f(dodaj(d, v[3])) + "</b> (" + T.proveri2 + ")";
+    var danas = new Date(); danas.setHours(0,0,0,0);
+    var proslo = Math.round((danas - d) / 864e5), ostalo = v[0] - proslo;
+    var t = "";
+    if (proslo >= 0 && ostalo >= 0) t = proslo + " " + T.proslo + " · " + ostalo + " " + T.ostalo;
+    else if (ostalo < 0) t = T.posle + " " + (-ostalo) + " " + T.dana;
+    document.getElementById("r-ostalo").textContent = t;
+    try { localStorage.setItem("hd-kalk-vrsta", vrsta.value); } catch (e) {}
+  }
+  try { var z = localStorage.getItem("hd-kalk-vrsta"); if (z && P[z]) vrsta.value = z; } catch (e) {}
+  var dn = new Date(); datum.value = dn.getFullYear() + "-" + String(dn.getMonth()+1).padStart(2,"0") + "-" + String(dn.getDate()).padStart(2,"0");
+  vrsta.addEventListener("change", racunaj); datum.addEventListener("input", racunaj); datum.addEventListener("change", racunaj);
+  racunaj();
+})();
+</script>
+</body>
+</html>
